@@ -1,0 +1,304 @@
+﻿<Page
+    Name="Canvas"
+    x:Class="UWPTest.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:UWPTest"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="using:Microsoft.Toolkit.Uwp.UI"
+    xmlns:media="using:Microsoft.Toolkit.Uwp.UI.Media"
+    mc:Ignorable="d"
+    Background="{ThemeResource AcrylicBrush}" 
+    Width="800" 
+    Height="330"
+>
+    <Page.Resources>
+        <media:AttachedCardShadow x:Key="SquareuttonShadow" Offset="0"  Color="#FFFA5252" CornerRadius="8"/>
+        <media:AttachedCardShadow x:Key="CircleButtonShadow" Offset="0"  Color="#FFFA5252" CornerRadius="20" BlurRadius="20"/>
+        
+        <ControlTemplate x:Key="CustomVolumeKnob" TargetType="ProgressBar">
+            <Grid>
+                <ProgressBar Name="KnobController" Height="66" 
+                 PointerPressed="KnobController_PointerPressed" 
+                 PointerMoved="KnobController_PointerMoved" 
+                 PointerReleased="KnobController_PointerReleased" 
+                 IsRightTapEnabled="False" 
+                 Canvas.ZIndex="1"
+                 Value="{Binding Volume}" 
+                 IsDoubleTapEnabled="False" Background="#00000000"
+                 />
+                <Image Name="Knob" Height="66" Width="66" 
+HorizontalAlignment="Center" VerticalAlignment="Center" 
+RenderTransformOrigin="0.5,0.5"
+>
+                    <Image.RenderTransform>
+                        <CompositeTransform Rotation="0"/>
+                    </Image.RenderTransform>
+                    <Image.Source>
+                        <SvgImageSource UriSource="/Assets/SVG/Knob.svg" RasterizePixelHeight="200" RasterizePixelWidth="200"/>
+                    </Image.Source>
+                </Image>
+                <TextBlock Name="VolumeText" FontFamily="Outfit Thin" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </ControlTemplate>
+        
+    </Page.Resources>
+
+    <Grid VerticalAlignment="Bottom">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="300"/>
+            <ColumnDefinition Width="500"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="300"/>
+        </Grid.RowDefinitions>
+
+        <!--
+        <Image Width="300" Height="300" Stretch="Fill" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left">
+            <Image.Source>
+                <SvgImageSource UriSource="/Assets/SVG/Circles.svg" RasterizePixelHeight="380" RasterizePixelWidth="388"/>
+            </Image.Source>
+        </Image>
+
+        <Image Width="300" Height="300" Stretch="Fill" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Bottom" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <CompositeTransform Rotation="0"/>
+            </Image.RenderTransform>
+            <Image.Source>
+                <SvgImageSource UriSource="/Assets/SVG/Spinner.svg" RasterizePixelHeight="352" RasterizePixelWidth="330"/>
+            </Image.Source>
+        </Image>
+        -->
+
+        <Image x:Name="Spinner" Width="700" Height="700" Stretch="Fill" Grid.Row="1" RenderTransformOrigin="0.485,0.5" VerticalAlignment="Top" HorizontalAlignment="Left" AllowFocusOnInteraction="False" IsDoubleTapEnabled="False" IsHoldingEnabled="False" IsRightTapEnabled="False" IsTapEnabled="False" Margin="-255,-155,0,0">
+            <Image.Source>
+                <SvgImageSource UriSource="/Assets/SVG/Wheel.svg" RasterizePixelHeight="682" RasterizePixelWidth="682"/>
+            </Image.Source>
+            <Image.RenderTransform>
+                <CompositeTransform x:Name="SpinnerRotationVar" TranslateX="0"/>
+            </Image.RenderTransform>
+        </Image>
+
+        <Grid Name="UIGrid" Grid.Row="1"  Grid.Column="1" Background="Transparent">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100"/>
+                <RowDefinition Height="200"/>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+                <Image Source="/Assets/Images/EqueliserIcon.png" Stretch="Fill"/>
+
+                <!-- These are the PLAY/PAUSE ICONS -->
+
+                <Image Name="PauseButton" Width="28" Height="32" Stretch="Fill" Grid.Column="1" Tapped="PauseButtonTapped" IsRightTapEnabled="False" IsDoubleTapEnabled="False">
+                    <Image.Source>
+                        <SvgImageSource UriSource="/Assets/SVG/PauseIcon.svg" RasterizePixelHeight="72" RasterizePixelWidth="56"/>
+                    </Image.Source>
+                </Image>
+
+                <Image Name="PlayButton" Stretch="Fill" Grid.Column="1" Tapped="PlayButtonTapped" Margin="18,14,13,19" Visibility="Collapsed" IsRightTapEnabled="False" IsDoubleTapEnabled="False" IsTapEnabled="False">
+                    <Image.Source>
+                        <SvgImageSource UriSource="/Assets/SVG/PlayIcon.svg" RasterizePixelHeight="88" RasterizePixelWidth="94"/>
+                    </Image.Source>
+                </Image>
+
+
+                <!-- This is the STOP/RECORD ICON -->
+
+                <Image Name="RecordSquare" 
+                       Width="30" Height="30" 
+                       Stretch="Fill" 
+                       Grid.Column="2" 
+                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                       Canvas.ZIndex="1"
+                       ui:Effects.Shadow="{StaticResource CircleButtonShadow}"
+                       Tapped="RecordButtonTapped"
+                       >
+                    <Image.Source>
+                        <SvgImageSource UriSource="/Assets/SVG/RecordSquare.svg" RasterizePixelHeight="200" RasterizePixelWidth="200"/>
+                    </Image.Source>
+                    <!--
+                    <Image.Triggers>
+                        <EventTrigger RoutedEvent="Image.Tapped">
+                            <BeginStoryboard>
+
+                                <Storyboard x:Name="SpinnerSpin">
+                                    <ObjectAnimationUsingKeyFrames 
+            Duration="Forever" 
+            Storyboard.TargetProperty="Rotation"
+            Storyboard.TargetName="SpinnerRotation"
+        >
+                                        <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <RotateTransform Angle="360" CenterX="0.485"/>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+
+                                        <DiscreteObjectKeyFrame KeyTime="0:0:10">
+                                            <DiscreteObjectKeyFrame.Value>
+                                                <RotateTransform Angle="0" CenterX="0.485"/>
+                                            </DiscreteObjectKeyFrame.Value>
+                                        </DiscreteObjectKeyFrame>
+
+                                    </ObjectAnimationUsingKeyFrames>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </Image.Triggers>
+                    -->
+
+                </Image>
+
+                <!--
+                <Border Name="RecordButton"
+                        Grid.Column="3" 
+                        CornerRadius="50, 50, 50, 50"
+                        Background="#FFFA5252" 
+                        Width="40" Height="40" 
+                        Canvas.ZIndex="1" 
+                        HorizontalAlignment="Center" VerticalAlignment="Center" 
+                        ui:Effects.Shadow="{StaticResource CircleButtonShadow}"
+                        Tapped="RecordButtonTapped"
+                >
+                    <Border.Resources>
+                        <Storyboard x:Name="StartRecordAnimation">
+                            <ObjectAnimationUsingKeyFrames Duration="0:0:1" Storyboard.TargetProperty="CornerRadius">
+                                <DiscreteObjectKeyFrame KeyTime="0:0:0">
+                                    <DiscreteObjectKeyFrame.Value>
+                                        <CornerRadius BottomLeft="10" BottomRight="10" TopLeft="10" TopRight="10"/>
+                                    </DiscreteObjectKeyFrame.Value>
+                                </DiscreteObjectKeyFrame>
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                        <Storyboard x:Name="StopRecordAnimation">
+                            
+                        </Storyboard>
+                    </Border.Resources>
+                </Border>
+                -->
+
+                <Image Name="RecordCircle" Width="100" Height="100" Stretch="Fill" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" Tapped="RecordButtonTapped">
+                    <Image.Source>
+                        <SvgImageSource UriSource="/Assets/SVG/RecordCircle.svg" RasterizePixelHeight="200" RasterizePixelWidth="200"/>
+                    </Image.Source>
+                </Image>
+            </Grid>
+
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="66"/>
+                    <RowDefinition Height="66"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <!-- Icon images for types of Inputs -->
+                <Image Grid.Row="0" Source="/Assets/Images/Mic_Image.png" Width="70" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="-4,0,0,0" Opacity="0.85" />
+                <Image Grid.Row="1" Source="/Assets/Images/Desktop_Image.png" Width="30" Opacity="0.85"/>
+                <Image Grid.Row="2" Width="30" Height="30" Stretch="Fill" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Image.Source>
+                        <SvgImageSource UriSource="/Assets/SVG/Cube_Svg.svg" RasterizePixelHeight="200" RasterizePixelWidth="200"/>
+                    </Image.Source>
+                </Image>
+
+                <ToggleSwitch Grid.Column="1" HorizontalAlignment="Center" Width="45" Margin="0,0,0,0" />
+                <ToggleSwitch Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" Width="45" Margin="0,0,0,0" />
+                <ToggleSwitch Grid.Column="1" Grid.Row="2" HorizontalAlignment="Center" Width="45" Margin="0,0,0,0" />
+
+                
+                
+                <!--
+                <Grid Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+
+                    <ProgressBar Name="KnobController" Height="66" 
+                                 PointerPressed="KnobController_PointerPressed" 
+                                 PointerMoved="KnobController_PointerMoved" 
+                                 PointerReleased="KnobController_PointerReleased" 
+                                 Tapped="KnobController_Tapped"
+                                 IsRightTapEnabled="False" 
+                                  
+                                 Canvas.ZIndex="1"
+                                 Value="{Binding Volume}" 
+                                 IsDoubleTapEnabled="False" Background="#00000000"
+                                 />
+                    <Image Name="Knob" Height="66" Width="66" 
+                HorizontalAlignment="Center" VerticalAlignment="Center" 
+                RenderTransformOrigin="0.5,0.5"
+                >
+                        <Image.RenderTransform>
+                            <CompositeTransform Rotation="0"/>
+                        </Image.RenderTransform>
+                        <Image.Source>
+                            <SvgImageSource UriSource="/Assets/SVG/Knob.svg" RasterizePixelHeight="200" RasterizePixelWidth="200"/>
+                        </Image.Source>
+                    </Image>
+                </Grid>
+                -->                
+
+                <ProgressBar Name="KnobController"  Template="{StaticResource CustomVolumeKnob}" Grid.Column="2" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                    <ProgressBar.RenderTransform>
+                        <CompositeTransform Rotation="0"/>
+                    </ProgressBar.RenderTransform>
+                </ProgressBar>
+
+                <!--
+                <ProgressBar Name="KnobController1"  Template="{StaticResource CustomVolumeKnob}" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                    <ProgressBar.RenderTransform>
+                        <CompositeTransform Rotation="0"/>
+                    </ProgressBar.RenderTransform>
+                </ProgressBar>
+
+                <ProgressBar Name="KnobController2"  Template="{StaticResource CustomVolumeKnob}" Grid.Column="2" Grid.Row="2"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.5,0.5">
+                    <ProgressBar.RenderTransform>
+                        <CompositeTransform Rotation="0"/>
+                    </ProgressBar.RenderTransform>
+                </ProgressBar>
+
+                
+                <Grid Grid.Column="2" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Ellipse Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualSecondaryBrush="#99FFFFFF" FocusVisualPrimaryBrush="Black" RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.Fill>
+                            <AcrylicBrush TintColor="#CC000000"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Ellipse Width="55" Height="55" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White"/>
+                    <Line Width="10" X1="0" Y1="4" Y2="10" Stroke="Black" StrokeThickness="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,5,0,20" StrokeEndLineCap="Round" StrokeStartLineCap="Round"/>
+                </Grid>
+                
+
+                
+                <Grid Grid.Column="2" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
+                    <Ellipse Width="60" Height="60" HorizontalAlignment="Center" VerticalAlignment="Center" FocusVisualSecondaryBrush="#99FFFFFF" FocusVisualPrimaryBrush="Black" RenderTransformOrigin="0.5,0.5">
+                        <Ellipse.Fill>
+                            <AcrylicBrush TintColor="#CC000000"/>
+                        </Ellipse.Fill>
+                    </Ellipse>
+                    <Ellipse Width="55" Height="55" HorizontalAlignment="Center" VerticalAlignment="Center" Fill="White"/>
+                    <Line Width="10" X1="0" Y1="4" Y2="10" Stroke="Black" StrokeThickness="10" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="10,5,0,20" StrokeEndLineCap="Round" StrokeStartLineCap="Round"/>
+                </Grid>
+-->
+                <ComboBox Grid.Column="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10">
+                    <ComboBoxItem Content="MicSource"/>
+                </ComboBox>
+                <ComboBox Grid.Column="3" Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,10,10,10">
+                    <ComboBoxItem Content="DesktopAudioSource"/>
+                </ComboBox>
+                <ComboBox Grid.Column="3" Grid.Row="2" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Margin="10,12,10,12">
+                    <ComboBoxItem Content="ApplicationAudioSource"/>
+                </ComboBox>
+            </Grid>
+        </Grid>
+    </Grid>
+</Page>

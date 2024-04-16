@@ -1,0 +1,28 @@
+﻿<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <ResourceDictionary.ThemeDictionaries>
+        <ResourceDictionary x:Key="Default">
+            <AcrylicBrush x:Key="AcrylicBrush"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="#202020"
+                      TintOpacity="0.5"
+                      TintLuminosityOpacity="0.3"
+                      FallbackColor="#202020"/>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="HighContrast">
+            <SolidColorBrush x:Key="AcrylicBrush"
+                         Color="{ThemeResource SystemColorWindowColor}"/>
+        </ResourceDictionary>
+
+        <ResourceDictionary x:Key="Light">
+            <AcrylicBrush x:Key="AcrylicBrush"
+                      BackgroundSource="HostBackdrop"
+                      TintColor="White"
+                      TintOpacity="0.1"
+                      TintLuminosityOpacity="0.2"
+                      FallbackColor="{StaticResource SystemChromeLowColor}"/>
+        </ResourceDictionary>
+    </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>
