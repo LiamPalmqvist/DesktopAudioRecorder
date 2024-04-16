@@ -1,60 +1,44 @@
-# Limited Private Use License
+GitHub License: Limited Private Use License
 
-## Definitions
-- **Software**: Refers to the code, binaries, or any associated materials provided by the Owner.
-- **Licensee**: Refers to any individual or entity that obtains a copy of the Software.
+1. Definitions
 
-## Grant of License
-Subject to the terms and conditions of this License, the Owner hereby grants
-Licensee a limited, non-exclusive, non-transferable license to use the Software
-for private, non-commercial purposes only.
+"Software" refers to the code, binaries, or any associated materials provided by the Owner.
+"Licensee" refers to any individual or entity that obtains a copy of the Software.
+2. Grant of License
 
-## Restrictions
+Subject to the terms and conditions of this License, the Owner hereby grants Licensee a limited, non-exclusive, non-transferable license to use the Software for private, non-commercial purposes only.
+
+3. Restrictions
+
 Licensee shall not:
-- Modify, adapt, or create derivative works of the Software.
-- Use the Software for any commercial purpose.
-- Use the Software in any way that violates patents or other intellectual
-  property rights.
-- Distribute the Software for any form of payment or consideration,
-  whether monetary or non-monetary.
-- Remove or alter any copyright, trademark, or other proprietary notices
-  contained in the Software.
 
-## Ownership
-Owner retains all right, title, and interest in and to the Software,
-including all intellectual property rights therein. This License does
-not transfer any ownership rights in the Software to Licensee.
+Modify, adapt, or create derivative works of the Software.
+Use the Software for any commercial purpose.
+Use the Software in any way that violates patents or other intellectual property rights.
+Distribute the Software for any form of payment or consideration, whether monetary or non-monetary.
+Remove or alter any copyright, trademark, or other proprietary notices contained in the Software.
+4. Ownership
 
-## Warranty Disclaimer
-THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS
-OR IMPLIED. OWNER DISCLAIMS ALL WARRANTIES, INCLUDING, BUT NOT LIMITED
-TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
-PURPOSE, AND NONINFRINGEMENT.
+Owner retains all right, title, and interest in and to the Software, including all intellectual property rights therein. This License does not transfer any ownership rights in the Software to Licensee.
 
-## Limitation of Liability
-IN NO EVENT SHALL OWNER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
-SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED
-TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
-PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE,
-REPRODUCTION, MODIFICATION, DISTRIBUTION, OR PERFORMANCE OF THE SOFTWARE,
-EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
+5. Warranty Disclaimer
 
-## Termination
-This License shall automatically terminate if Licensee breaches any of its terms.
-Upon termination, Licensee must cease all use of the Software and destroy
-all copies thereof.
+THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED. OWNER DISCLAIMS ALL WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
 
-## Governing Law
-This License shall be governed by and construed in accordance with the laws
-of [Jurisdiction]. Any dispute arising under or in connection with this License
-shall be subject to the exclusive jurisdiction of the courts of [Jurisdiction].
+6. Limitation of Liability
 
-## Agreement
-By using the Software, Licensee agrees to be bound by the terms and conditions
-of this License. If Licensee does not agree to these terms, Licensee must
-not use the Software.
+IN NO EVENT SHALL OWNER BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) ARISING IN ANY WAY OUT OF THE USE, REPRODUCTION, MODIFICATION, DISTRIBUTION, OR PERFORMANCE OF THE SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-Liam Palmqvist
+7. Termination
 
-Licensee acknowledges that Licensee has read and understands this License
-and agrees to be bound by its terms and conditions.
+This License shall automatically terminate if Licensee breaches any of its terms. Upon termination, Licensee must cease all use of the Software and destroy all copies thereof.
+
+8. Governing Law
+
+This License shall be governed by and construed in accordance with the laws of [Jurisdiction]. Any dispute arising under or in connection with this License shall be subject to the exclusive jurisdiction of the courts of [Jurisdiction].
+
+9. Agreement
+
+By using the Software, Licensee agrees to be bound by the terms and conditions of this License. If Licensee does not agree to these terms, Licensee must not use the Software.
+
+Licensee acknowledges that Licensee has read and understands this License and agrees to be bound by its terms and conditions.
